@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Legendary Quotes</title>
+</head>
+<body>
+    <header>
+        <h1>Legendary Quotes</h1>
+    </header>
+    <main class="main">
+        {% for quote in quotes %}
+            <div class="quote-box">
+                <p class="text">{{ quote.text }}</p>
+                <p class="author">- {{ quote.author }}</p>
+            </div>
+        {% endfor %}
+    </main>
+    <footer class="footer">
+        <p>Made With FastApi.</p>
+    </footer>
+</body>
+</html>
