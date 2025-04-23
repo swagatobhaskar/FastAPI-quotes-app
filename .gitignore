@@ -121,3 +121,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# only include the following if you do not want to put the database on the git repo
+*.db 
+*.sqlite3
+!example.db  # Allow if you want to include a template database
