@@ -38,14 +38,6 @@ def get_all_quotes(db: Session = Depends(get_db)):
          response_model=list[schemas.QuoteOut]
          )
 def get_all_quotes(request: Request, db: Session = Depends(get_db)):
-    # quotes = [
-    #     {'id': 1, 'author': 'bob', 'text': 'Awwwu..'},
-    #     {'id': 2, 'author': 'john hoe', 'text': 'I\'m gay'},
-    #     {
-    #         'id': 3, 'author': 'bruce lee',
-    #         'text': 'Don\'t pray for an easy life, pray for the endurance to live a hard life.'
-    #     }
-    # ] 
     all_quotes = db.query(models.Quote).all()
 
     return templates.TemplateResponse(
