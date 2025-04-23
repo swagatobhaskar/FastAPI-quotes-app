@@ -24,16 +24,11 @@ app.mount("/static", StaticFiles(directory="static"), name= "static")
 
 templates = Jinja2Templates(directory="templates")
 
-@app.get("/")
-def read_root():
-    return {"message": "Hello, World!"}
+# @app.get("/")
+# def read_root():
+#     return {"message": "Hello, World!"}
 
-@app.get("/api/all-quotes", response_model=list[schemas.QuoteOut])
-def get_all_quotes(db: Session = Depends(get_db)):
-    all_quotes = db.query(models.Quote).all()
-    return all_quotes
-
-@app.get("/all-quotes",
+@app.get("/",
          response_class=HTMLResponse,
          response_model=list[schemas.QuoteOut]
          )
@@ -45,6 +40,12 @@ def get_all_quotes(request: Request, db: Session = Depends(get_db)):
         name="quotes.html",
         context={"quotes": all_quotes}
     )
+
+
+@app.get("/api/all-quotes", response_model=list[schemas.QuoteOut])
+def get_all_quotes(db: Session = Depends(get_db)):
+    all_quotes = db.query(models.Quote).all()
+    return all_quotes
 
 @app.post("/api/new-quote")
 def add_quote(quote: schemas.QuoteCreate, db: Session = Depends(get_db)):
