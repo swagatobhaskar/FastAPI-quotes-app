@@ -1,3 +1,13 @@
+> ! Before running FastAPI server, seed the database by running `seed_db.py`. It will create and populate the database unless the database already exists.
+>
+> `>>> python seed_db.py`
+>
+> `>>> fastapi dev main.py`
+>
+> OR
+>
+>  `>>> uvicorn main:app --reload`
+
 ### Steps to Add SQLAlchemy
 ***
 1. Install dependencies:
@@ -34,5 +44,11 @@
         finally:
             db.close()
     ```
+> That get_db() function is perfect for dependency injection in FastAPI routes — but it doesn't generate or manage migration files.
+>
+>  🚨 TL;DR:
+>
+> There are no migration files unless you use a migration tool like Alembic.
+
 8.  Use Database in Endpoints.
    
