@@ -1,4 +1,4 @@
-> ! Before running FastAPI server, seed the database by running `seed_db.py`. It will create and populate the database unless the database already exists.
+> ! Before running FastAPI server in development, seed the database by running `seed_db.py`. It will create and populate the database unless the database already exists.
 >
 > `>>> python seed_db.py`
 >
@@ -51,4 +51,9 @@
 > There are no migration files unless you use a migration tool like Alembic.
 
 8.  Use Database in Endpoints.
-   
+
+***
+
+Run locally in production mode: `uvicorn main:app --host 0.0.0.0 --port 8000 --reload`
+
+To run in production: `gunicorn -k uvicorn.workers.UvicornWorker app.main:app`
