@@ -4,8 +4,8 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
-import models, database, schemas
-from database import SessionLocal
+import models, schemas
+from database import SessionLocal, engine
 
 app = FastAPI()
 
@@ -18,7 +18,7 @@ def get_db():
         db.close()
 
 # Create Database Tables
-models.Base.metadata.create_all(bind=database.engine)
+models.Base.metadata.create_all(bind=engine)
 
 app.mount("/static", StaticFiles(directory="static"), name= "static")
 
