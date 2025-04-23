@@ -11,12 +11,18 @@
         <h1>Legendary Quotes</h1>
     </header>
     <main class="main">
-        {% for quote in quotes %}
-            <div class="quote-box">
-                <p class="text">{{ quote.text }}</p>
-                <p class="author">- {{ quote.author }}</p>
-            </div>
-        {% endfor %}
+        {% if quotes|length == 0 %}
+                <p style="color: #02293f; font-weight: bold; background-color: #ffe6e6; padding: 1em; border-radius: 6px;">
+                    No quotes found!
+                </p>
+        {% else %}
+            {% for quote in quotes %}
+                <div class="quote-box">
+                    <p class="text">{{ quote.text }}</p>
+                    <p class="author">- {{ quote.author }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
     </main>
     <footer class="footer">
         <p>Made With FastApi.</p>
