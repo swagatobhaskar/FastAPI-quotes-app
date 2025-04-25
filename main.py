@@ -3,11 +3,30 @@ from fastapi import FastAPI, Request, Depends
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
+
 import models, schemas
 from database import SessionLocal, engine
 
 app = FastAPI()
+
+
+origins = [
+    "http://localhost:8000",
+    "https://fastapi-quotes-app.onrender.com",
+    "192.168.0.102", # local ubuntu
+    "202.8.112.251", # public ip
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # Add Dependency to Get DB Session
 def get_db():
@@ -24,9 +43,18 @@ app.mount("/static", StaticFiles(directory="static"), name= "static")
 
 templates = Jinja2Templates(directory="templates")
 
-# @app.get("/")
-# def read_root():
-#     return {"message": "Hello, World!"}
+
+@app.middleware('http')
+async def log_client_ip(request: Request, call_next):
+    client_ip = request.client.host
+    print(f"Client IP: {client_ip}")
+
+    response = await call_next(request)
+    return response
+
+@app.get("/root")
+def read_root():
+    return {"message": "Hello, World!"}
 
 @app.get("/",
          response_class=HTMLResponse,
