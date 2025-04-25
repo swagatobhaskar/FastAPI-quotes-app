@@ -1,4 +1,5 @@
 from fastapi.testclient import TestClient
+
 from main import app
 
 client = TestClient(app)
@@ -17,4 +18,13 @@ def test_all_quotes_route():
     assert response.status_code == 200
 
 def test_new_quote():
-    pass
+    response = client.post(
+        "/api/new-quote",
+        json={"author": "bob", "text": "bob's test quote."}
+        )
+    data = response.json()
+    assert response.status_code == 200
+    assert data['author'] == 'bob'
+    assert data["text"] == "bob's test quote."
+    assert "id" in data
+    assert isinstance(data["id"], int)
