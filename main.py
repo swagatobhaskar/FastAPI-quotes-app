@@ -13,8 +13,7 @@ app = FastAPI()
 
 allowed_origins = [
     "http://localhost:8000",
-    "192.168.0.102", # local ubuntu
-    "202.8.112.251", # public ip
+    # "202.8.112.251", # public ip
 ]
 
 app.add_middleware(
