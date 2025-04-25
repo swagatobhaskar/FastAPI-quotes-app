@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <title>Legendary Quotes</title>
+</head>
+<body>
+    <header>
+        <h1>Legendary Quotes</h1>
+    </header>
+    <main class="main">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="footer">
+        <p>Made With</p>
+        <img style="background-color: #ffe6e6;" src="{{ url_for('static', path='images/logo-teal.png') }}" height="80" width="300"/>
+    </footer>
+</body>
+</html>
