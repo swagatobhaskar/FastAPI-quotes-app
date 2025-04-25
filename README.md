@@ -1,3 +1,5 @@
+Hosted on [render](https://fastapi-quotes-app.onrender.com).
+
 > ! Before running FastAPI server in development, seed the database by running `seed_db.py`. It will create and populate the database unless the database already exists.
 >
 > `>>> python seed_db.py`
