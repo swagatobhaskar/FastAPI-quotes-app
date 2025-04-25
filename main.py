@@ -11,17 +11,15 @@ from database import SessionLocal, engine
 
 app = FastAPI()
 
-
-origins = [
+allowed_origins = [
     "http://localhost:8000",
-    "https://fastapi-quotes-app.onrender.com",
     "192.168.0.102", # local ubuntu
     "202.8.112.251", # public ip
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
