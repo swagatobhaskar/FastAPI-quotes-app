@@ -1,23 +1,21 @@
-from fastapi.testclient import TestClient
 
-from main import app
+# pass the client fixture from confTest.py
 
-client = TestClient(app)
-
-def test_root():
+def test_root(client):
     response = client.get("/root")
     assert response.status_code == 200
     assert response.json() == {"message": "Hello, World!"}
 
-def test_home_root():
+def test_home_root(client):
     response = client.get("/")
     assert response.status_code == 200
 
-def test_all_quotes_route():
+def test_all_quotes_route(client):
     response = client.get("/api/all-quotes")
     assert response.status_code == 200
 
-def test_new_quote():
+# pass the client fixture as an argument
+def test_new_quote(client):
     response = client.post(
         "/api/new-quote",
         json={"author": "bob", "text": "bob's test quote."}
