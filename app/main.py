@@ -3,10 +3,10 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
-import models
-from middleware import log_client_ip
-from database import engine
-from routes import quotes
+from .models import Base
+from .middleware import log_client_ip
+from .database import engine
+from .routes import quotes
 
 app = FastAPI()
 
@@ -26,7 +26,7 @@ app.add_middleware(
 app.middleware("http")(log_client_ip)
 
 # Create Database Tables
-models.Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 
 app.mount("/static", StaticFiles(directory="static"), name= "static")
 

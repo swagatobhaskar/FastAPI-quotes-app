@@ -1,6 +1,6 @@
 import os
-from database import engine, SessionLocal
-from models import Base, Quote
+from app.database import engine, SessionLocal
+from app.models import Base, Quote
 
 # wipe clean each time, optional
 # Base.metadata.drop_all(bind=engine)
