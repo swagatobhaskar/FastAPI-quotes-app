@@ -3,9 +3,8 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
-from .models import Base
 from .middleware import log_client_ip
-from .database import engine
+from .database import Base, engine
 from .routes import quotes
 
 app = FastAPI()
