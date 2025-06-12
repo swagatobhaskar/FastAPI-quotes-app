@@ -13,7 +13,7 @@ templates = Jinja2Templates(directory="templates")
 
 @router.get("/",
          response_class=HTMLResponse,
-         response_model=list[QuoteOut]
+         #response_model=list[QuoteOut] # Schema not required in HTMLResponse and TemplateResponse.
          )
 def get_all_quotes(request: Request, db: Session = Depends(get_db)):
     all_quotes = db.query(Quote).all()
